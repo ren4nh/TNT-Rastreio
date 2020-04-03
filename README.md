@@ -1,6 +1,6 @@
 # TNT-Rastreio
 
-**This app was developed for the educational purpose only
+## This app was developed for the educational purpose only
 
 ## How to run
 
