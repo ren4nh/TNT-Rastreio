@@ -14,8 +14,10 @@ identificacao = input("Informe o CNPJ/CPF:")
 tipo_doc = input("Informe o tipo de documento (NF - Nota fiscal, CTRC - Doc. Serviço, RCLI - Ref. Cliente):")
 num_doc = input("Informe o numero do documento:")
 
+print("Consultando...")
+
 option = Options()
-option.headless = False
+option.headless = True
 driver = webdriver.Chrome(options=option)
 
 try:
