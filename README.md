@@ -1,4 +1,4 @@
-# TNT-Rastreio
+# Carrier Check
 
 This app was developed for the educational purpose only
 
@@ -17,5 +17,6 @@ pip install -r requirements.txt
 ### Running code
 
 ```
-python main.py
+export FLASK_APP=server.py
+flask run
 ```
