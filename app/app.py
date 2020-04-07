@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_expects_json import expects_json
 import json
-import scrapingfactory as sf
+import factory.scrapingfactory as sf
 scraping = sf.ScrapingFactory()
 
 app = Flask(__name__)
@@ -31,3 +31,6 @@ def search_order():
 def bad_request(error):
     print(error.description)
     return make_response(jsonify({'error': str(error.description)}), 400)
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')    

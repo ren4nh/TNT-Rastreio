@@ -15,6 +15,8 @@ class TntHandler:
 
         option = Options()
         option.headless = True
+        option.add_argument('--no-sandbox')
+        option.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(options=option)
 
         try:
