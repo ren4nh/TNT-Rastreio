@@ -15,6 +15,10 @@ spec:
     metadata:
       labels:
         app: "order-tracking"
+    spec:
+      containers:
+      - name: "gke-order-tracking"
+        image: ren4nh/order-tracking
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
