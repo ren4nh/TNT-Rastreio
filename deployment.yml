@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2020-04-08T01:00:52Z"
+  generation: 5
+  labels:
+    app: order-tracking
+  name: order-tracking
+  namespace: default
+  resourceVersion: "23851"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/order-tracking
+  uid: 64b7cf12-7934-11ea-931a-42010a800177
