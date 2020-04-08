@@ -9,6 +9,5 @@ metadata:
     app: order-tracking
   name: order-tracking
   namespace: default
-  resourceVersion: "23851"
   selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/order-tracking
   uid: 64b7cf12-7934-11ea-931a-42010a800177
