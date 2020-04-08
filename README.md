@@ -9,6 +9,7 @@ This app was developed for the educational purpose only
 * Python 3.x
 * Chromedriver
 * Chrome
+Teste
 
 ### Install the libraries with:
 ```
