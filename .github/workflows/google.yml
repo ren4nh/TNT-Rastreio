@@ -23,7 +23,7 @@ env:
   GKE_CLUSTER: python-cluster
   IMAGE: gke-order-tracking
   REGISTRY_HOSTNAME: gcr.io
-  DEPLOYMENT_NAME: gke-order-tracking
+  DEPLOYMENT_NAME: order-tracking
 
 jobs:
   setup-build-publish-deploy:
