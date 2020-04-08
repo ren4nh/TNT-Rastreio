@@ -1,4 +1,4 @@
-from python:3-alpine3.8
+FROM python:3-alpine3.8
 
 RUN apk update && apk add --no-cache bash \
         alsa-lib \
