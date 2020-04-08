@@ -1,13 +1,41 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2020-04-08T01:00:52Z"
-  generation: 5
+  name: "order-tracking"
+  namespace: "default"
   labels:
-    app: order-tracking
-  name: order-tracking
-  namespace: default
-  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/order-tracking
-  uid: 64b7cf12-7934-11ea-931a-42010a800177
+    app: "order-tracking"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "order-tracking"
+  template:
+    metadata:
+      labels:
+        app: "order-tracking"
+    spec:
+      containers:
+      - name: "gke-order-tracking-sha256-1"
+        image: "$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "order-tracking-hpa-kkdr"
+  namespace: "default"
+  labels:
+    app: "order-tracking"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "order-tracking"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80

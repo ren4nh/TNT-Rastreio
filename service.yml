@@ -1,10 +1,17 @@
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: "2020-04-08T01:01:58Z"
-  labels:
-    app: order-tracking
-  name: order-tracking-service
-  namespace: default
-  selfLink: /api/v1/namespaces/default/services/order-tracking-service
-  uid: 8bf31f83-7934-11ea-931a-42010a800177
+---
+  apiVersion: "v1"
+  kind: "Service"
+  metadata:
+    name: "order-tracking-service"
+    namespace: "default"
+    labels:
+      app: "order-tracking"
+  spec:
+    ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 5000
+    selector:
+      app: "order-tracking"
+    type: "LoadBalancer"
+  
