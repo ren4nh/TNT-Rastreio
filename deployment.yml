@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "gke-order-tracking"
-        image: $REGISTRY_HOSTNAME"/"$GKE_PROJECT/$IMAGE
+        image: gcr.io/main-canyon-273521/gke-order-tracking
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
