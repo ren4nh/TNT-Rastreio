@@ -15,10 +15,6 @@ spec:
     metadata:
       labels:
         app: "order-tracking"
-    spec:
-      containers:
-      - name: "gke-order-tracking-sha256-1"
-        image: $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
