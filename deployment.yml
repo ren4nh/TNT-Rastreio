@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: "gke-order-tracking"
-        image: gcr.io/main-canyon-273521/gke-order-tracking
+        image: gcr.io/main-canyon-273521/gke-order-tracking:latest
         env:
           - name: REDISHOST
             valueFrom:
