@@ -19,6 +19,12 @@ spec:
       containers:
       - name: "gke-order-tracking"
         image: gcr.io/main-canyon-273521/gke-order-tracking
+        env:
+          - name: REDISHOST
+            valueFrom:
+              configMapKeyRef:
+                name: redishost
+                key: REDISHOST
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
