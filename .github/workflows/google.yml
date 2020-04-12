@@ -24,6 +24,7 @@ env:
   IMAGE: gke-order-tracking
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: order-tracking
+  REDISHOST: ${{ secrets.REDISHOST }}
 
 jobs:
   setup-build-publish-deploy:
@@ -67,6 +68,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
+        kubectl create configmap redishost --from-literal=REDISHOST=${REDISHOST}
         ./kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
