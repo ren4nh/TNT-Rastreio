@@ -33,9 +33,9 @@ ENV PATH="/usr/bin/chromedriver:${PATH}"
 
 COPY app /app
 
-WORKDIR /app
+COPY app.py .
 
-RUN pip install -r requirements.txt
+RUN pip install -r app/requirements.txt
 
 EXPOSE 5000
 

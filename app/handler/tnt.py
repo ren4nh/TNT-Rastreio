@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 import requests
+import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
-import json
+from app.email import send_email
+from app.utils import utils
+
 
 class TntHandler:
 
@@ -42,7 +45,7 @@ class TntHandler:
             elements = driver.find_elements_by_class_name("dataTables_empty")
 
             if len(elements) > 0:
-                raise Exception("Nenhum registro encontrado")
+                raise Exception("No records found")
 
             driver.find_element_by_id("results").find_element_by_tag_name("a").click()
 
@@ -51,11 +54,15 @@ class TntHandler:
             for row in rows:
                 colums = row.find_elements_by_tag_name("td")
                 results.append({'data': colums[0].text, 'ocorrencia': colums[1].text, 'filial': colums[2].text})
+
+            send_email("Rastreio TNT", "tracking@hartwig.com", [data["email"]], None, utils.convert_to_html(results))
             
-            return json.dumps(results, ensure_ascii=False).encode('utf8')
+            return { 'success' : 'Please check your email to get the result'}
 
         except Exception as identifier:
             print(identifier)
             return { 'error' : str(identifier)}
         finally:
             driver.quit()
+        
+        

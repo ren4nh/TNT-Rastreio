@@ -1,4 +1,4 @@
-import handler.tnt as tnt
+from app.handler import tnt
 
 class ScrapingFactory:
     def scrap(self, data):
