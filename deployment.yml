@@ -7,7 +7,7 @@ metadata:
   labels:
     app: "order-tracking"
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: "order-tracking"
@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
       - name: "gke-order-tracking"
-        image: gcr.io/main-canyon-273521/gke-order-tracking:latest
+        image: gcr.io/main-canyon-273521/gke-order-tracking
+        imagePullPolicy: Always
         env:
           - name: REDISHOST
             valueFrom:
@@ -39,7 +40,7 @@ spec:
     name: "order-tracking"
     apiVersion: "apps/v1"
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 1
   metrics:
   - type: "Resource"
     resource:
