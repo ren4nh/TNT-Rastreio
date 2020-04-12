@@ -1,0 +1,1 @@
+from app.factory import scrapingfactory
