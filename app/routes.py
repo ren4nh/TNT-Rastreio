@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_expects_json import expects_json
 import json
-from app import app, factory
+from app import app, factory, redis
 scraping = factory.scrapingfactory.ScrapingFactory()
 
 schema = {
@@ -19,6 +19,14 @@ schema = {
 @app.route('/hello')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/redis')
+def get_redis_keys():
+    return str(redis.keys('*'))
+
+@app.route('/redis/<key>')
+def get_redis_set(key):
+    return str(redis.smembers(key))
 
 @app.route('/', methods=['POST'])
 @expects_json(schema)
