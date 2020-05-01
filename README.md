@@ -1,23 +1,21 @@
 # Order Tracking
 
-This app was developed for the educational purpose only
+This app get the tracking result of an order and send the result to a email
+
+Tecnologies used:
+
+* Python3
+* Flask
+* Selenium
 
 ## How to run
 
 ### Requirements
 
-* Python 3.x
-* Chromedriver
-* Chrome
-Teste
+* Docker
+* Docker compose
 
-### Install the libraries with:
+### Running app
 ```
-pip install -r requirements.txt
-```
-### Running code
-
-```
-export FLASK_APP=server.py
-flask run
+docker-compose up
 ```

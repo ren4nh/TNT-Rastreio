@@ -1,8 +1,8 @@
 from flask import Flask, request, make_response, jsonify
 from flask_expects_json import expects_json
 import json
-from app import app, factory, redis
-scraping = factory.scrapingfactory.ScrapingFactory()
+from app import app, redis
+from app.factory import scrapingfactory
 
 schema = {
     'type': 'object',
@@ -32,7 +32,7 @@ def get_redis_set(key):
 @expects_json(schema)
 def search_order():
     data = request.json
-    return scraping.scrap(data)
+    return scrapingfactory.scrap(data)
 
 @app.errorhandler(400)
 def bad_request(error):

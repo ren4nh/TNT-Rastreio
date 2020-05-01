@@ -12,20 +12,19 @@ from app.utils import utils
 
 class TntHandler:
 
-    def scrap(self, data):
-        # Grab content from URL (Pegar conteúdo HTML a partir da URL)
-        url = "https://radar.tntbrasil.com.br/radar/public/localizacaoSimplificada"
+    def __init__(self):
+        self.option = Options()
+        self.option.headless = True
+        self.option.add_argument('--no-sandbox')
+        self.option.add_argument('--disable-dev-shm-usage')
+        self.driver = webdriver.Chrome(options=self.option)
+        self.driver.implicitly_wait(5)  # in seconds
+        self.url = "https://radar.tntbrasil.com.br/radar/public/localizacaoSimplificada"
 
-        option = Options()
-        option.headless = True
-        option.add_argument('--no-sandbox')
-        option.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(options=option)
-
+    def scrap(self, data):      
         try:
-            driver.get(url)
-            driver.implicitly_wait(5)  # in seconds
-
+            driver = self.driver
+            driver.get(self.url)
             results = []
 
             select = Select(driver.find_element_by_id("remDest"))
@@ -54,7 +53,7 @@ class TntHandler:
             for row in rows:
                 colums = row.find_elements_by_tag_name("td")
                 results.append({'data': colums[0].text, 'ocorrencia': colums[1].text, 'filial': colums[2].text})
-
+            
             send_email("Rastreio TNT", "tracking@hartwig.com", [data["email"]], None, utils.convert_to_html(results))
             
             return { 'success' : 'Please check your email to get the result'}
@@ -63,6 +62,6 @@ class TntHandler:
             print(identifier)
             return { 'error' : str(identifier)}
         finally:
-            driver.quit()
+            self.driver.quit()
         
         
