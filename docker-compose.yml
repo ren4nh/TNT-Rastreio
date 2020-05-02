@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  database:
+    container_name: order-tracking-database
+    image: redis:5.0.8-alpine
+    expose:
+      - 6379
+    restart: always
+  server:
+    container_name: order_tracking_server
+    build: .
+    depends_on:
+      - database
+    ports:
+      - 5000:5000
+    links:
+      - database
+    environment:
+      WAIT_HOSTS: database:6379
+      FLASK_ENV: production
+      REDISHOST: database
+    restart: always

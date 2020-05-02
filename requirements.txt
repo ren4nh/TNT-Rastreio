@@ -4,3 +4,4 @@ Flask==1.1.2
 flask_expects_json==1.4.0
 Flask_Mail==0.9.1
 redis
+APScheduler

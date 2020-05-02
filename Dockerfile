@@ -33,10 +33,12 @@ ENV PATH="/usr/bin/chromedriver:${PATH}"
 
 COPY app /app
 
-COPY app.py .
+COPY server.py  .
 
-RUN pip install -r app/requirements.txt
+COPY requirements.txt  .
+
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "app.py" ]
+CMD ["python", "server.py" ]
