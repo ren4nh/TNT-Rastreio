@@ -1,6 +1,6 @@
 # Order Tracking
 
-This app get the tracking result of an order and send the result to a email
+This app get the tracking result of an order and send the result to an email
 
 Tecnologies used:
 
